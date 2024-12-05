@@ -3,12 +3,12 @@
 
 #include <QObject>
 #ifdef Q_OS_WIN
+#include "stdafx.h"
+#if USE_ELA_SCREEN
 #include <d3d11.h>
 #include <dxgi1_6.h>
 
 #include <QPixmap>
-
-#include "stdafx.h"
 
 class ElaDxgi : public QObject
 {
@@ -47,5 +47,6 @@ private:
     void releaseInterface();
     void cpuSleep(int usec);
 };
-#endif
+#endif // USE_ELA_SCREEN
+#endif // Q_OS_WIN
 #endif // ELADXGI_H

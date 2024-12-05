@@ -1,6 +1,16 @@
 ﻿#ifndef STDAFX_H
 #define STDAFX_H
 
+//
+// Enable or disable ElaScreen component?
+// Added by shines77, 2024-12-05
+//
+#define USE_ELA_SCREEN  0
+
+#if _MSC_VER >= 1600
+//#pragma execution_character_set("utf-8")
+#endif
+
 #include <QtCore/qglobal.h>
 
 #ifdef ELAWIDGETTOOLS_LIBRARY

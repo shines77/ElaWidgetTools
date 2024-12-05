@@ -1,5 +1,6 @@
 #include "ElaDxgi.h"
 #ifdef Q_OS_WIN
+#if USE_ELA_SCREEN
 #include <QDateTime>
 #include <QDebug>
 
@@ -319,4 +320,5 @@ void ElaDxgi::cpuSleep(int usec)
         }
     }
 }
-#endif
+#endif // USE_ELA_SCREEN
+#endif // Q_OS_WIN

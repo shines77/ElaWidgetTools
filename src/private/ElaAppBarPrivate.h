@@ -4,6 +4,29 @@
 
 #include "Def.h"
 #include "stdafx.h"
+
+//
+// For Qt::Edge extend enum
+// Added by shines77, 2024-12-05
+//
+namespace Qt
+{
+    // Because using the plus sign already can compile normally, it's useless here.
+#if 1
+    enum EdgeEx {
+        TopLeftEdge = Edge::TopEdge + Edge::LeftEdge,
+        TopRightEdge = Edge::TopEdge + Edge::RightEdge,
+        BottomLeftEdge = Edge::BottomEdge + Edge::LeftEdge,
+        BottomRightEdge = Edge::BottomEdge + Edge::RightEdge
+    };
+#else
+    static const int TopLeftEdge = Edge::TopEdge + Edge::LeftEdge;
+    static const int TopRightEdge = Edge::TopEdge + Edge::RightEdge;
+    static const int BottomLeftEdge = Edge::BottomEdge + Edge::LeftEdge;
+    static const int BottomRightEdge = Edge::BottomEdge + Edge::RightEdge;
+#endif
+}
+
 class QLabel;
 class QScreen;
 class QHBoxLayout;

@@ -4,9 +4,12 @@
 #include <QMainWindow>
 
 #include "ElaWindow.h"
+
 class T_Home;
 class T_Icon;
+#if USE_ELA_SCREEN
 class T_ElaScreen;
+#endif
 class T_BaseComponents;
 class T_Graphics;
 class T_Navigation;
@@ -34,7 +37,9 @@ private:
     ElaContentDialog* _closeDialog{nullptr};
     T_Home* _homePage{nullptr};
 #ifdef Q_OS_WIN
+#if USE_ELA_SCREEN
     T_ElaScreen* _elaScreenPage{nullptr};
+#endif
 #endif
     T_Icon* _iconPage{nullptr};
     T_BaseComponents* _baseComponentsPage{nullptr};

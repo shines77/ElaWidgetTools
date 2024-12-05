@@ -2,6 +2,7 @@
 
 #include "ElaToggleButton.h"
 #ifdef Q_OS_WIN
+#if USE_ELA_SCREEN
 #include <QVBoxLayout>
 
 #include "ElaComboBox.h"
@@ -83,4 +84,5 @@ T_ElaScreen::T_ElaScreen(QWidget* parent)
 T_ElaScreen::~T_ElaScreen()
 {
 }
-#endif
+#endif // USE_ELA_SCREEN
+#endif // Q_OS_WIN

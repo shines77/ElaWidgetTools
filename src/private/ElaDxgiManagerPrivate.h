@@ -3,6 +3,7 @@
 #include <QObject>
 #ifdef Q_OS_WIN
 #include "stdafx.h"
+#if USE_ELA_SCREEN
 class ElaDxgi;
 class ElaDxgiManager;
 class ElaDxgiManagerPrivate : public QObject
@@ -34,5 +35,6 @@ private:
     ElaDxgiManager* _dxgiManager{nullptr};
     bool _isSyncGrabSize{false};
 };
-#endif
+#endif // USE_ELA_SCREEN
+#endif // Q_OS_WIN
 #endif // ELADXGIMANAGERPRIVATE_H

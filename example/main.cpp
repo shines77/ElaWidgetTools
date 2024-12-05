@@ -12,8 +12,8 @@ int main(int argc, char* argv[])
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 #else
-    //根据实际屏幕缩放比例更改
-    qputenv("QT_SCALE_FACTOR", "1.5");
+    // 根据实际屏幕缩放比例更改
+    qputenv("QT_SCALE_FACTOR", "1.0");
 #endif
 #endif
     QApplication a(argc, argv);

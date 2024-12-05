@@ -28,7 +28,9 @@
 #include "T_TableView.h"
 #include "T_TreeView.h"
 #ifdef Q_OS_WIN
+#if USE_ELA_SCREEN
 #include "ExamplePage/T_ElaScreen.h"
+#endif
 #endif
 #include "ExamplePage/T_Home.h"
 #include "ExamplePage/T_Icon.h"
@@ -208,7 +210,9 @@ void MainWindow::initContent()
 {
     _homePage = new T_Home(this);
 #ifdef Q_OS_WIN
+#if USE_ELA_SCREEN
     _elaScreenPage = new T_ElaScreen(this);
+#endif
 #endif
     _iconPage = new T_Icon(this);
     _baseComponentsPage = new T_BaseComponents(this);
@@ -225,8 +229,10 @@ void MainWindow::initContent()
     QString testKey_2;
     addPageNode("HOME", _homePage, ElaIconType::House);
 #ifdef Q_OS_WIN
+#if USE_ELA_SCREEN
     addExpanderNode("ElaDxgi", _elaDxgiKey, ElaIconType::TvMusic);
     addPageNode("ElaScreen", _elaScreenPage, _elaDxgiKey, 3, ElaIconType::ObjectGroup);
+#endif
 #endif
     // navigation(elaScreenWidget->property("ElaPageKey").toString());
     addPageNode("ElaBaseComponents", _baseComponentsPage, ElaIconType::CabinetFiling);
@@ -274,9 +280,11 @@ void MainWindow::initContent()
         this->navigation(_homePage->property("ElaPageKey").toString());
     });
 #ifdef Q_OS_WIN
+#if USE_ELA_SCREEN
     connect(_homePage, &T_Home::elaScreenNavigation, this, [=]() {
         this->navigation(_elaScreenPage->property("ElaPageKey").toString());
     });
+#endif
 #endif
     connect(_homePage, &T_Home::elaBaseComponentNavigation, this, [=]() {
         this->navigation(_baseComponentsPage->property("ElaPageKey").toString());

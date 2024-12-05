@@ -2,9 +2,11 @@
 #define ELADXGIMANAGER_H
 
 #include <QWidget>
+
 #ifdef Q_OS_WIN
-#include "singleton.h"
 #include "stdafx.h"
+#if USE_ELA_SCREEN
+#include "singleton.h"
 
 class ElaDxgiManagerPrivate;
 class ELA_EXPORT ElaDxgiManager : public QObject
@@ -54,5 +56,6 @@ public:
 protected:
     void paintEvent(QPaintEvent* event) override;
 };
-#endif
+#endif // USE_ELA_SCREEN
+#endif // Q_OS_WIN
 #endif // ELADXGIMANAGER_H

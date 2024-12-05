@@ -7,7 +7,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
@@ -43,13 +43,17 @@ else ()
         DeveloperComponents/ElaKeyBinderContainer.h)
 endif ()
 
-if (${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+if (QT_VERSION_MAJOR EQUAL 6)
     qt_add_library(${EXPORT_NAME} ${LIB_TYPE}
         ${PROJECT_SOURCES}
     )
 else ()
+    # Qt 5 添加资源文件
+    set(RESOURCES ./include/ElaWidgetTools.qrc)
+    qt5_add_resources(RESOURCES_RCC ${RESOURCES})
+
     add_library(${EXPORT_NAME} ${LIB_TYPE}
-        ${PROJECT_SOURCES}
+        ${PROJECT_SOURCES} ${RESOURCES_RCC}
     )
 endif ()
 
@@ -63,9 +67,10 @@ target_include_directories(${EXPORT_NAME} PUBLIC
     $<INSTALL_INTERFACE:include>
 )
 
-if (${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    #遍历所有资源文件
+if (QT_VERSION_MAJOR EQUAL 6)
+    # 遍历所有资源文件
     file(GLOB_RECURSE RES_PATHS *.png *.jpg *.svg *.ico *.ttf *.webp *.js)
+    # message(STATUS "RES_PATHS = ${RES_PATHS}")
     foreach (filepath ${RES_PATHS})
         string(REPLACE "${CMAKE_CURRENT_SOURCE_DIR}/" "" filename ${filepath})
         list(APPEND resource_files ${filename})
@@ -88,7 +93,7 @@ if (WIN32)
     target_link_libraries(${EXPORT_NAME} PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
         D3D11
-        DXGI
+        # DXGI
     )
 else ()
     target_link_libraries(${EXPORT_NAME} PUBLIC
