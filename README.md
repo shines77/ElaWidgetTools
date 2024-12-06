@@ -95,9 +95,11 @@ set(ELAWIDGETTOOLS_LIBRARY_DIRS "C:/Project/Qt/ElaWidgetTools/build/src/Release"
 
 **关于 DXGI**
 
-DXGI，是（DirectX Graphics Infrastructure），ElaWidgetTools 示例代码中的 T_ElaScreen (./example/ExamplePage/T_ElaScreen.h) 使用 `ElaDxgi` 和 `ElaDxgiManager` ，其中引用的头文件 <dxgi1_6.h> 可能需要安装 DirectX 的 SDK 包才有，我懒得装，完全没必要。
+DXGI，是（DirectX Graphics Infrastructure），DirectX 的图像接口，ElaWidgetTools 示例代码中的 T_ElaScreen 使用了 DXGI 技术。
 
-另外，T_ElaScreen 是用于录制桌面的，一个 UI 示例程序里本来就不应该有它，也是属于为了一碗醋，包了顿饺子。
+T_ElaScreen 代码在  `./example/ExamplePage/T_ElaScreen.h`，使用了 `ElaDxgi` 和 `ElaDxgiManager` ，`ElaDxgi` 引用的头文件 <dxgi1_6.h> 可能需要安装 DirectX 的 SDK 包才有，我懒得装，完全没必要。
+
+T_ElaScreen 是用于录制桌面的，DXGI 用于捕捉桌面，据说效率更高，但是一个 UI 示例程序里本来就不应该有它，也是属于为了一碗醋，包了顿饺子。
 
 如果想打开 `T_ElaScreen` 的支持，可以在 `stdafx.h` 中打开，如下所示：
 
