@@ -79,7 +79,7 @@ Linux 为 QT5.15 以上)，推荐版本为 QT 6.4.3 和 QT 6.6.2。
 
 **关于 ElaWidgetToolsConfig.cmake**
 
-`ElaWidgetToolsConfig.cmake` 文件 CMake 没有正常生成，可以自己手动修改：
+由于 `/install/lib/cmake/ElaWidgetToolsConfig.cmake` 文件 CMake 没有正常生成，可以自己手动修改：
 
 范例如下：
 
