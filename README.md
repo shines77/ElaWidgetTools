@@ -7,7 +7,7 @@ Linux 为 QT5.15 以上)，推荐版本为 QT 6.4.3 和 QT 6.6.2。
 
 本项目基于 [Liniyous](https://github.com/Liniyous) 的 [https://github.com/Liniyous/ElaWidgetTools](https://github.com/Liniyous/ElaWidgetTools) 修改。
 
-## 修改内容
+## 修改历史
 
 修改的目标是降低编译要求，尽量减少不必要的依赖，以适应最低的要求编译它。
 
