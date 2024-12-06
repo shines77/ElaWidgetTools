@@ -2,6 +2,128 @@
 
 ## 简介
 
+本项目是基于 QT-Widget 开发的 FluentUI 风格的组件库，同时提供不限于组件的常用集成功能；目前 Main 分支支持 QT5.12 以上所有版本 (
+Linux 为 QT5.15 以上)，推荐版本为 QT 6.4.3 和 QT 6.6.2。
+
+本项目基于 [Liniyous](https://github.com/Liniyous) 的 [https://github.com/Liniyous/ElaWidgetTools](https://github.com/Liniyous/ElaWidgetTools) 修改。
+
+## 本仓库 Git
+
+[https://github.com/shines77/ElaWidgetTools](https://github.com/shines77/ElaWidgetTools)
+
+[https://gitee.com/shines77/ElaWidgetTools](https://gitee.com/shines77/ElaWidgetTools)
+
+## 修改内容
+
+修改的目标是降低编译要求，尽量减少不必要的依赖，以适应最低的要求编译它。
+
+**修改内容**
+
+- 编译要求从 C++ 17 改为 C++ 11 (所有 CMakeLists.txt)；
+
+- 修改 `./src/private/ElaAppBarPrivate.cpp` 中需要 C++ 17 的代码；
+
+- 修正 Qt5 环境下，Example 演示程序的资源文件不能正常编译的问题 (/example/CMakeLists.txt)；
+
+- 屏蔽 ElaDxgi 和 T_ElaScreen, 编译开关放在 stdafx.h 中，可以自己打开 (所有相关的 .h、.cpp 文件)；
+
+- 增加了遗漏的 `/install/lib/cmake/ElaWidgetToolsConfig.cmake` (CMake没有正常生成)；
+
+- 修改 main.cpp 中的 QT_SCALE_FACTOR 值为 1.0，原来的值 1.5 太大了，启动 example 程序默认大小太大了。
+
+**编译环境**
+
+- 已在 Windows 10 + Qt 5.12.1 + MSVS 2015 64位 环境下编译通过。
+
+- CMakeLists.txt 中编译选项为至少支持 C++ 11，低于 VS 2015 以下的版本能不能编译没试过，有兴趣的朋友可以自己尝试一下。
+
+- 已尝试过 Qt 5.6.x 版本，CMake 可以 Configure，但编译的时候错误太多，很难修改，不现实。
+
+## 修改细节
+
+**关于 C++ 17 改为 C++ 11**
+
+原代码中只有一处需要修改的，原作者属于是为了一碗醋，包了一顿饺子。
+
+另外一个地方使用了 [[maybe_unuse]]，这个可能也属于 C++ 17，但无关痛痒，低版本只是报个 warning 而已。
+
+`./src/private/ElaAppBarPrivate.cpp` 原代码：
+
+```cpp
+    case Qt::LeftEdge | Qt::TopEdge:
+    case Qt::RightEdge | Qt::BottomEdge:
+    {
+        q->window()->setCursor(Qt::SizeFDiagCursor);
+        break;
+    }
+    case Qt::RightEdge | Qt::TopEdge:
+    case Qt::LeftEdge | Qt::BottomEdge:
+    {
+        q->window()->setCursor(Qt::SizeBDiagCursor);
+        break;
+    }
+```
+
+更改为（仅仅只是把 "|"" 改为 "+" ）：
+
+```cpp
+    case (Qt::LeftEdge + Qt::TopEdge):
+    case (Qt::RightEdge + Qt::BottomEdge):
+    {
+        q->window()->setCursor(Qt::SizeFDiagCursor);
+        break;
+    }
+    case (Qt::RightEdge + Qt::TopEdge):
+    case (Qt::LeftEdge + Qt::BottomEdge):
+    {
+        q->window()->setCursor(Qt::SizeBDiagCursor);
+        break;
+    }
+```
+
+头文件我也用了 enum 和 const 常量的方法，直接改加号能用就用不上他们了。
+
+**关于 ElaWidgetToolsConfig.cmake**
+
+`ElaWidgetToolsConfig.cmake` 文件 CMake 没有正常生成，可以自己手动修改：
+
+范例如下：
+
+```cmake
+set(ELAWIDGETTOOLS_INCLUDE_DIRS "C:/Project/Qt/ElaWidgetTools/src/include")
+set(ELAWIDGETTOOLS_LIBRARIES "C:/Project/Qt/ElaWidgetTools/build/src/Release")
+set(ELAWIDGETTOOLS_LIBRARY_DIRS "C:/Project/Qt/ElaWidgetTools/build/src/Release")
+```
+
+以上配置中，ElaWidgetTools 的根目录是：`C:/Project/Qt/ElaWidgetTools`，项目 Build 目录为 `./build`，请根据以上范例自行修改。
+
+其实也可以改成自动配置的，我懒得改了。路径配置可能可以不对，但这个文件不存在，用 CMake configure 的时候会报错。
+
+**关于 DXGI**
+
+DXGI，是（DirectX Graphics Infrastructure），ElaWidgetTools 示例代码中的 T_ElaScreen (./example/ExamplePage/T_ElaScreen.h) 使用 `ElaDxgi` 和 `ElaDxgiManager` ，其中引用的头文件 <dxgi1_6.h> 可能需要安装 DirectX 的 SDK 包才有，我懒得装，完全没必要。
+
+另外，T_ElaScreen 是用于录制桌面的，一个 UI 示例程序里本来就不应该有它，也是属于为了一碗醋，包了顿饺子。
+
+如果想打开 `T_ElaScreen` 的支持，可以在 `stdafx.h` 中打开，如下所示：
+
+```cpp
+#ifndef STDAFX_H
+#define STDAFX_H
+
+//
+// Enable or disable ElaScreen component?
+// Added by shines77, 2024-12-05
+//
+#define USE_ELA_SCREEN  0
+```
+
+把 `USE_ELA_SCREEN` 改为 1，即为打开 T_ElaScreen 的编译。
+
+以下开始是原项目的 `README.md` 内容。
+
+## 原项目简介
+
 本项目是基于QT-Widget开发的FluentUI风格的组件库，同时提供不限于组件的常用集成功能；目前Main分支支持QT5.12以上所有版本(
 Linux为QT5.15以上)，推荐版本为QT6.4.3和QT6.6.2；
 
@@ -11,7 +133,7 @@ Linux为QT5.15以上)，推荐版本为QT6.4.3和QT6.6.2；
 
 ## 支持平台
 
-| [Windows][win-link] | [Ubuntu][ubuntu-link] 
+| [Windows][win-link] | [Ubuntu][ubuntu-link] |
 |---------------------|-----------------------|
 | ![win-badge]        | ![ubuntu-badge]       |
 
@@ -30,7 +152,7 @@ Linux为QT5.15以上)，推荐版本为QT6.4.3和QT6.6.2；
 </div>
 <div align=center>
   <img src="doc/preview/ElaWidgetTools_Dark.png">
-</div> 
+</div>
 
 ## 支持的组件
 
