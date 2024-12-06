@@ -155,15 +155,15 @@ void ElaAppBarPrivate::_updateCursor(int edges)
         break;
     }
     // Modified by shines77, 2024-12-05
-    case (Qt::TopEdge + Qt::LeftEdge):
-    case (Qt::BottomEdge + Qt::RightEdge):
+    case (Qt::LeftEdge + Qt::TopEdge):
+    case (Qt::RightEdge + Qt::BottomEdge):
     {
         q->window()->setCursor(Qt::SizeFDiagCursor);
         break;
     }
     // Modified by shines77, 2024-12-05
-    case (Qt::TopEdge + Qt::RightEdge):
-    case (Qt::BottomEdge + Qt::LeftEdge):
+    case (Qt::RightEdge + Qt::TopEdge):
+    case (Qt::LeftEdge + Qt::BottomEdge):
     {
         q->window()->setCursor(Qt::SizeBDiagCursor);
         break;

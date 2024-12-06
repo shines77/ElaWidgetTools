@@ -14,16 +14,16 @@ namespace Qt
     // Because using the plus sign already can compile normally, it's useless here.
 #if 1
     enum EdgeEx {
-        TopLeftEdge = Edge::TopEdge + Edge::LeftEdge,
-        TopRightEdge = Edge::TopEdge + Edge::RightEdge,
-        BottomLeftEdge = Edge::BottomEdge + Edge::LeftEdge,
-        BottomRightEdge = Edge::BottomEdge + Edge::RightEdge
+        TopLeftEdge = Edge::LeftEdge + Edge::TopEdge,
+        TopRightEdge = Edge::RightEdge + Edge::TopEdge,
+        BottomLeftEdge = Edge::LeftEdge + Edge::BottomEdge,
+        BottomRightEdge = Edge::RightEdge + Edge::BottomEdge
     };
 #else
-    static const int TopLeftEdge = Edge::TopEdge + Edge::LeftEdge;
-    static const int TopRightEdge = Edge::TopEdge + Edge::RightEdge;
-    static const int BottomLeftEdge = Edge::BottomEdge + Edge::LeftEdge;
-    static const int BottomRightEdge = Edge::BottomEdge + Edge::RightEdge;
+    static const int TopLeftEdge = Edge::LeftEdge + Edge::TopEdge;
+    static const int TopRightEdge = Edge::RightEdge + Edge::TopEdge;
+    static const int BottomLeftEdge = Edge::LeftEdge + Edge::BottomEdge;
+    static const int BottomRightEdge = Edge::RightEdge + Edge::BottomEdge;
 #endif
 }
 
