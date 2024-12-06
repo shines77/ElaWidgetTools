@@ -101,7 +101,7 @@ T_ElaScreen 代码在  `./example/ExamplePage/T_ElaScreen.h`，使用了 `ElaDxg
 
 T_ElaScreen 是用于录制桌面的，DXGI 用于捕捉桌面，据说效率更高，但是一个 UI 示例程序里本来就不应该有它，也是属于为了一碗醋，包了顿饺子。
 
-如果想打开 `T_ElaScreen` 的支持，可以在 `stdafx.h` 中打开，如下所示：
+如果想打开 `T_ElaScreen` 的支持，可以在 `./src/include/stdafx.h` 中打开，如下所示：
 
 ```cpp
 #ifndef STDAFX_H
