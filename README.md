@@ -2,16 +2,10 @@
 
 ## 简介
 
-本项目是基于 QT-Widget 开发的 FluentUI 风格的组件库，同时提供不限于组件的常用集成功能；目前 Main 分支支持 QT5.12 以上所有版本 (
+本项目是使用 QT-Widget 开发的 FluentUI 风格的组件库，同时提供不限于组件的常用集成功能；目前 Main 分支支持 QT5.12 以上所有版本 (
 Linux 为 QT5.15 以上)，推荐版本为 QT 6.4.3 和 QT 6.6.2。
 
 本项目基于 [Liniyous](https://github.com/Liniyous) 的 [https://github.com/Liniyous/ElaWidgetTools](https://github.com/Liniyous/ElaWidgetTools) 修改。
-
-## 本仓库 Git
-
-[https://github.com/shines77/ElaWidgetTools](https://github.com/shines77/ElaWidgetTools)
-
-[https://gitee.com/shines77/ElaWidgetTools](https://gitee.com/shines77/ElaWidgetTools)
 
 ## 修改内容
 
@@ -120,7 +114,13 @@ DXGI，是（DirectX Graphics Infrastructure），ElaWidgetTools 示例代码中
 
 把 `USE_ELA_SCREEN` 改为 1，即为打开 T_ElaScreen 的编译。
 
-以下开始是原项目的 `README.md` 内容。
+## 本仓库 Git
+
+[https://github.com/shines77/ElaWidgetTools](https://github.com/shines77/ElaWidgetTools)
+
+[https://gitee.com/shines77/ElaWidgetTools](https://gitee.com/shines77/ElaWidgetTools)
+
+从以下开始是原项目的 `README.md` 内容。
 
 ## 原项目简介
 
